@@ -54,13 +54,25 @@ class LinkedList(object):
             print (current.get_data())
             current = current.get_next()
 
+    def reverse(self):
+        prev = None
+        curr = self.head
+        while curr:
+            next1 = curr.get_next()
+            curr.set_next(prev)
+            prev = curr
+            curr = next1
+        self.head = prev
+
 hello = LinkedList()
 hello.insert(10)
 hello.insert(20)
-hello.delete_front()
+# hello.delete_front()
 hello.insert(30)
 hello.insert(40)
-hello.delete_mid(2)
-hello.delete_end()
+# hello.delete_mid(2)
+# hello.delete_end()
 hello.insert(50)
+hello.traverse()
+hello.reverse()
 hello.traverse()
