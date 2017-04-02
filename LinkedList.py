@@ -10,12 +10,12 @@ class Node(object):
         return self.data
 
     def get_next(self):
+        # type: () -> object
         return self.next
 
 class LinkedList(object):
     def __init__(self):
         self.head = None
-        self.tail = None
 
     def insert(self, data):
         new_node = Node(data)
@@ -54,6 +54,19 @@ class LinkedList(object):
             print (current.get_data())
             current = current.get_next()
 
+    def traverse_rec(self, head1):
+        current = head1
+        if current:
+            print current.get_data()
+            self.traverse_rec(current.get_next())
+
+    def traverse_rev_rec(self, head1):
+        current = head1
+        if current is None:
+            return
+        self.traverse_rev_rec(current.get_next())
+        print current.get_data()
+
     def reverse(self):
         prev = None
         curr = self.head
@@ -63,6 +76,17 @@ class LinkedList(object):
             prev = curr
             curr = next1
         self.head = prev
+
+    def reverse_rec(self, head1):
+        prev = head1
+        current = head1.get_next()
+        if current.get_next() is None:
+            self.head.set_next(None)
+            self.head = current
+            current.set_next(prev)
+            return
+        self.reverse_rec(current)
+        current.set_next(prev)
 
 hello = LinkedList()
 hello.insert(10)
@@ -74,5 +98,8 @@ hello.insert(40)
 # hello.delete_end()
 hello.insert(50)
 hello.traverse()
-hello.reverse()
+# hello.reverse()
+# hello.traverse_rec(hello.head)
+# hello.traverse_rev_rec(hello.head)
+hello.reverse_rec(hello.head)
 hello.traverse()
