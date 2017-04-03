@@ -27,35 +27,27 @@ class Stack(object):
                 print "Element %s is present in Stack at position %d" %(self.stack[temp], temp)
                 temp -= 1
 
-precedence = {
-    "+": 1,
-    "-": 1,
-    "*": 2,
-    "/": 2
-}
-
-
-def has_higher_precedence(op1, op2):
-        if precedence[op1] > precedence[op2]:
-            return True
-        elif precedence[op1] < precedence[op2]:
-            return False
-        else:
-            return True
-
 new_stack = Stack()
-exp = "A+B*C-D/E*F"
+exp = "23*54*+9-"
 new_exp = ""
 for i in exp:
-    if i.isalpha():
-        new_exp = new_exp + i
-    else:
-        while new_stack.top is not -1 and has_higher_precedence(new_stack.stack[-1], i):
-            new_exp = new_exp + new_stack.pop()
-            # new_stack.top -= 1
+    if i.isdigit():
         new_stack.push(i)
+    else:
+        # while new_stack.top is not -1:
+            a = new_stack.pop()
+            # print int(a)
+            a1 = int(a)
+            b = new_stack.pop()
+            b1 = int(b)
+            if i is "/":
+                temp = b1 / a1
+            elif i is "*":
+                temp = b1 * a1
+            elif i is "+":
+                temp = b1 + a1
+            elif i is "-":
+                temp = b1 - a1
+            new_stack.push(temp)
 
-while new_stack.top is not -1:
-    new_exp = new_exp + new_stack.pop()
-
-print new_exp
+print new_stack.pop()
