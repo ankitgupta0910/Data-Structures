@@ -61,3 +61,4 @@ new_queue.dequeue()
 new_queue.dequeue()
 new_queue.dequeue()
 new_queue.traverse()
+print "Hello"
