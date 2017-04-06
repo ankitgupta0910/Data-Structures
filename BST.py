@@ -48,13 +48,13 @@ class BinarySearchTree(object):
         if curr.get_left() is not None:
             curr1 = curr.get_left()
             self.inorder(curr1)
-        print curr.get_data()
+        print curr.get_data(),
         if curr.get_right() is not None:
             curr1 = curr.get_right()
             self.inorder(curr1)
 
     def preorder(self, curr):
-        print curr.get_data()
+        print curr.get_data(),
         if curr.get_left() is not None:
             curr1 = curr.get_left()
             self.preorder(curr1)
@@ -69,7 +69,41 @@ class BinarySearchTree(object):
         if curr.get_right() is not None:
             curr1 = curr.get_right()
             self.postorder(curr1)
-        print curr.get_data()
+        print curr.get_data(),
+
+    def min(self):
+        curr = self.root
+        while curr.get_left() is not None:
+            curr = curr.get_left()
+        print "Minimum element is ", curr.get_data()
+
+    def max(self):
+        curr = self.root
+        while curr.get_right() is not None:
+            curr = curr.get_right()
+        print "Maximum element is ", curr.get_data()
+
+    def height(self, curr):
+        if curr is None:
+            return -1
+        leftHeight = self.height(curr.get_left())
+        rightHeight = self.height(curr.get_right())
+        return max(leftHeight,rightHeight) + 1
+
+    def lot(self):
+        myq = []
+        curr = self.root
+        myq.append(curr)
+        while myq:
+            curr = myq[0]
+            # temp = myq[0]
+            print curr.get_data(),
+            del(myq[0])
+            if curr.get_left() is not None:
+                myq.append(curr.get_left())
+            if curr.get_right() is not None:
+                myq.append(curr.get_right())
+
 
 bst = BinarySearchTree()
 bst.insert(50)
@@ -79,8 +113,11 @@ bst.insert(40)
 bst.insert(20)
 bst.insert(80)
 bst.insert(60)
-bst.preorder(bst.root)
-print "\n"
-bst.inorder(bst.root)
-print "\n"
-bst.postorder(bst.root)
+bst.insert(35)
+print "Preorder Traversal is: ", bst.preorder(bst.root)
+print "Inorder Traversal is: ", bst.inorder(bst.root)
+print "Postorder Traversal is: ", bst.postorder(bst.root)
+bst.min()
+bst.max()
+print "Height of tree is: ", bst.height(bst.root)
+print "Level Traversal is: ", bst.lot()
