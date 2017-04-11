@@ -104,6 +104,27 @@ class BinarySearchTree(object):
             if curr.get_right() is not None:
                 myq.append(curr.get_right())
 
+    def boundary(self, curr):
+        if curr.get_left() is not None:
+            curr1 = curr.get_left()
+            self.boundary(curr1)
+        print curr.get_data()
+        if curr is self.root:
+            while curr.get_right() is not None:
+                curr = curr.get_right()
+                print curr.get_data()
+
+    def boundary1(self, curr):
+        if curr.get_right() is not None:
+            curr1 = curr.get_right()
+            self.boundary1(curr1)
+        if curr.get_left() is not None:
+            curr1 = curr.get_left()
+            self.boundary1(curr1)
+        if curr.get_left() is None and curr.get_right() is None:
+            print curr.get_data(),
+
+
 
 bst = BinarySearchTree()
 bst.insert(50)
@@ -114,10 +135,12 @@ bst.insert(20)
 bst.insert(80)
 bst.insert(60)
 bst.insert(35)
-print "Preorder Traversal is: ", bst.preorder(bst.root)
-print "Inorder Traversal is: ", bst.inorder(bst.root)
-print "Postorder Traversal is: ", bst.postorder(bst.root)
-bst.min()
-bst.max()
-print "Height of tree is: ", bst.height(bst.root)
-print "Level Traversal is: ", bst.lot()
+bst.boundary(bst.root)
+bst.boundary1(bst.root)
+# print "Preorder Traversal is: ", bst.preorder(bst.root)
+# print "Inorder Traversal is: ", bst.inorder(bst.root)
+# print "Postorder Traversal is: ", bst.postorder(bst.root)
+# bst.min()
+# bst.max()
+# print "Height of tree is: ", bst.height(bst.root)
+# print "Level Traversal is: ", bst.lot()
