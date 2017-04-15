@@ -19,6 +19,7 @@ class Node(object):
     def get_right(self):
         return self.right
 
+
 class BinarySearchTree(object):
     def __init__(self):
         self.root = None
