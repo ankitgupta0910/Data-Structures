@@ -13,6 +13,7 @@ class Node(object):
         # type: () -> object
         return self.next
 
+
 class LinkedList(object):
     def __init__(self):
         self.head = None
@@ -43,7 +44,7 @@ class LinkedList(object):
             head1 = temp
             head1.get_next().set_next(self.reverse(head1.get_next().get_next()))
             return head1
- 
+
 hello = LinkedList()
 hello.insert(10)
 hello.insert(20)
