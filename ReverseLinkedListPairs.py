@@ -33,17 +33,17 @@ class LinkedList(object):
             print current.get_data(), '->',
             current = current.get_next()
 
-    def reverse(self, head):
-        if self.head is None or self.head.get_next() is None:
+    def reverse(self, head1):
+        if head1 is None or head1.get_next() is None:
             return
         else:
-            temp = self.head.get_next()
-            self.head.set_next(temp.get_next())
-            temp.set_next(self.head)
-            self.head = temp
-            self.head.get_next().set_next(self.reverse(self.head.get_next().get_next()))
-            return self.head
-
+            temp = head1.get_next()
+            head1.set_next(temp.get_next())
+            temp.set_next(head1)
+            head1 = temp
+            head1.get_next().set_next(self.reverse(head1.get_next().get_next()))
+            return head1
+ 
 hello = LinkedList()
 hello.insert(10)
 hello.insert(20)
@@ -52,5 +52,5 @@ hello.insert(40)
 hello.insert(50)
 hello.insert(60)
 # hello.traverse()
-hello.reverse(hello.head)
+hello.head = hello.reverse(hello.head)
 hello.traverse()
