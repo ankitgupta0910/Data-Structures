@@ -42,45 +42,25 @@ class LinkedList(object):
             print current.get_data()
             self.traverse_rec(current.get_next())
 
-    def traverse_rev_rec(self, head1):
-        current = head1
-        if current is None:
-            return
-        self.traverse_rev_rec(current.get_next())
-        print current.get_data()
-
-    def reverse(self):
-        prev = None
-        curr = self.head
-        while curr:
-            next1 = curr.get_next()
-            curr.set_next(prev)
-            prev = curr
-            curr = next1
-        self.head = prev
-
-    def reverse_rec(self, head1):
-        prev = head1
-        current = head1.get_next()
-        if current.get_next() is None:
-            self.head.set_next(None)
-            self.head = current
-            current.set_next(prev)
-            return
-        self.reverse_rec(current)
-        current.set_next(prev)
-
     def middle(self):
         m = 1
         n = 1
+        i = 0
         p1 = self.head
         p2 = self.head
         while p2.get_next() is not None:
-            p1 = p1.get_next()
-            p2 = p2.get_next().get_next()
-            m += 1
-            n += 2
-        print math.floor(n/2)
+            if i is 0:
+                p2 = p2.get_next()
+                i = 1
+                n += 1
+            else:
+                p1 = p1.get_next()
+                p2 = p2.get_next()
+                m += 1
+                n += 1
+                i = 0
+        # print math.floor(n/2)
+        print p1.get_data()
 
 hello = LinkedList()
 hello.insert(10)
@@ -89,6 +69,10 @@ hello.insert(30)
 hello.insert(40)
 hello.insert(50)
 hello.insert(60)
+hello.insert(70)
+hello.insert(80)
+# hello.insert(90)
+
 # hello.traverse()
 # hello.reverse_rec(hello.head)
 # hello.traverse()
